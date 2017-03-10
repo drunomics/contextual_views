@@ -192,17 +192,17 @@ class ContextualBlock extends Block {
     $config = $block->getConfiguration();
     list(, $display_id) = explode('-', $block->getDerivativeId(), 2);
 
-    if (!empty($allow_settings['items_per_page'])) {
+    if (!empty($allow_settings['items_per_page']) && !empty($config['items_per_page'])) {
       $this->view->setItemsPerPage($config['items_per_page']);
     }
 
     // Change pager offset settings based on block configuration.
-    if (!empty($allow_settings['offset'])) {
+    if (!empty($allow_settings['offset']) && isset($config['pager_offset'])) {
       $this->view->setOffset($config['pager_offset']);
     }
 
     // Change pager style settings based on block configuration.
-    if (!empty($allow_settings['pager'])) {
+    if (!empty($allow_settings['pager']) && isset($config['pager'])) {
       $pager = $this->view->display_handler->getOption('pager');
       if (!empty($config['pager']) && $config['pager'] != 'view') {
         $pager['type'] = $config['pager'];
@@ -211,7 +211,7 @@ class ContextualBlock extends Block {
     }
 
     // Change sorts based on block configuration.
-    if (!empty($allow_settings['configure_sorts'])) {
+    if (!empty($allow_settings['configure_sorts']) && isset($config['sort'])) {
       $sorts = $this->view->getHandlers('sort', $display_id);
       foreach ($sorts as $sort_name => $sort) {
         if (!empty($config["sort"][$sort_name])) {
