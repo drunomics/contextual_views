@@ -20,9 +20,9 @@ class ContentListing extends ViewsBlock {
    */
   public function defaultConfiguration() {
     return [
-        'type' => $this->t(''),
-        'status' => $this->t('Published'),
-      ] + parent::defaultConfiguration();
+      'type' => $this->t('Content type'),
+      'status' => $this->t('Published'),
+    ] + parent::defaultConfiguration();
   }
 
   /**
@@ -45,7 +45,7 @@ class ContentListing extends ViewsBlock {
       '#empty_option' => $this->t('All'),
       '#options' => [
         '1' => $this->t('Published'),
-        '0' => $this->t('Unpublished')
+        '0' => $this->t('Unpublished'),
       ],
       '#default_value' => $this->configuration['status'],
       '#weight' => '0',
@@ -74,4 +74,5 @@ class ContentListing extends ViewsBlock {
 
     return parent::build();
   }
+
 }

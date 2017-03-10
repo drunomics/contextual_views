@@ -43,15 +43,15 @@ class ContextualBlock extends Block {
       'pager' => $this->t('Pager type'),
       'items_per_page' => $this->t('Items per page'),
       'offset' => $this->t('Pager offset'),
-      'configure_sorts' => $this->t('Configure sorts')
+      'configure_sorts' => $this->t('Configure sorts'),
     ];
     $filter_intersect = array_intersect_key($filter_options, $filtered_allow);
 
-    $options['allow'] = array(
+    $options['allow'] = [
       'category' => 'block',
       'title' => $this->t('Allowed settings'),
       'value' => empty($filtered_allow) ? $this->t('None') : implode(', ', $filter_intersect),
-    );
+    ];
   }
 
   /**
@@ -88,19 +88,19 @@ class ContextualBlock extends Block {
       $pager_options = [
         'view' => $this->t('Default'),
         'some' => $this->t('Display a specified number of items'),
-        'none' => $this->t('Display all items')
+        'none' => $this->t('Display all items'),
       ];
       $form['override']['pager'] = [
         '#type' => 'radios',
         '#title' => $this->t('Pager'),
         '#options' => $pager_options,
-        '#default_value' => isset($block_configuration['pager']) ? $block_configuration['pager'] : 'view'
+        '#default_value' => isset($block_configuration['pager']) ? $block_configuration['pager'] : 'view',
       ];
     }
 
     // Modify "Items per page" block settings form.
     if (!empty($allow_settings['items_per_page'])) {
-      // Items per page
+      // Items per page.
       $form['override']['items_per_page']['#type'] = 'number';
       unset($form['override']['items_per_page']['#options']);
     }
@@ -115,14 +115,13 @@ class ContextualBlock extends Block {
       ];
     }
 
-
     // Provide "Configure sorts" block settings form.
     if (!empty($allow_settings['configure_sorts'])) {
       $sorts = $this->getHandlers('sort');
-      $options = array(
+      $options = [
         'ASC' => $this->t('Sort ascending'),
         'DESC' => $this->t('Sort descending'),
-      );
+      ];
       foreach ($sorts as $sort_name => $plugin) {
         $form['override']['sort'][$sort_name] = [
           '#type' => 'details',
@@ -132,12 +131,12 @@ class ContextualBlock extends Block {
           '#type' => 'value',
           '#value' => $plugin,
         ];
-        $form['override']['sort'][$sort_name]['order'] = array(
+        $form['override']['sort'][$sort_name]['order'] = [
           '#title' => $this->t('Order'),
           '#type' => 'radios',
           '#options' => $options,
-          '#default_value' => $plugin->options['order']
-        );
+          '#default_value' => $plugin->options['order'],
+        ];
 
         // Set default values for sorts for this block.
         if (!empty($block_configuration["sort"][$sort_name])) {
@@ -174,7 +173,7 @@ class ContextualBlock extends Block {
       $sorts = $form_state->getValue(['override', 'sort']);
       foreach ($sorts as $sort_name => $sort) {
         $plugin = $sort['plugin'];
-        // Check if we want to override the default sort order
+        // Check if we want to override the default sort order.
         if ($plugin->options['order'] != $sort['order']) {
           $configuration['sort'][$sort_name] = $sort['order'];
         }
@@ -227,7 +226,7 @@ class ContextualBlock extends Block {
    */
   public function usesExposed() {
     $filters = $this->getHandlers('filter');
-    foreach ($filters as $filter_name => $filter) {
+    foreach ($filters as $filter) {
       if ($filter->isExposed() && !empty($filter->exposedInfo())) {
         return TRUE;
       }
@@ -236,6 +235,8 @@ class ContextualBlock extends Block {
   }
 
   /**
+   * {@inheritdoc}
+   *
    * Exposed widgets typically only work with ajax in Drupal core, however
    * #2605218 totally breaks the rest of the functionality in this display and
    * in Core's Block display as well, so we allow non-ajax block views to use
