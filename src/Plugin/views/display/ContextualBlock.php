@@ -31,8 +31,6 @@ use Drupal\views\Plugin\views\display\Block;
  */
 class ContextualBlock extends Block {
 
-  use DependencySerializationTrait;
-
   /**
    * {@inheritdoc}
    */
