@@ -2,7 +2,6 @@
 
 namespace Drupal\contextual_views\Plugin\views\display;
 
-use Drupal\Core\DependencyInjection\DependencySerializationTrait;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\views\Plugin\Block\ViewsBlock;
 use Drupal\views\Plugin\views\display\Block;
