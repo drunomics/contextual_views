@@ -4,6 +4,16 @@ Drupal module that provides contextual views blocks.
 
 * Project homepage: https://www.drupal.org/project/contextual_views
 
+## Composer
+
+- It's suggested to install the module via composer:
+
+   `composer require drunomics/contextual_views`
+   
+   The module is also available as `drupal/contextual_views` via the drupal.org
+   release system, however only `drunomics/contextual_views` gets patch level
+   releases. This is as drupal.org does not support semantic versioning for
+   modules yet.
 
 ## Installation
 
