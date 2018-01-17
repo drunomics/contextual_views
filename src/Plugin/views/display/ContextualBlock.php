@@ -188,7 +188,7 @@ class ContextualBlock extends Block {
     $config = $block->getConfiguration();
     list(, $display_id) = explode('-', $block->getDerivativeId(), 2);
 
-    if (!empty($allow_settings['items_per_page']) && !empty($config['items_per_page'])) {
+    if (!empty($allow_settings['items_per_page']) && !empty($config['items_per_page']) && $config['items_per_page'] !== 'none') {
       $this->view->setItemsPerPage($config['items_per_page']);
     }
 
