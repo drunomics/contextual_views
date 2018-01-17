@@ -22,7 +22,7 @@ for further information.
 * Alter the block form to add additional config as needed, e.g. a textfield that 
   contains the name of the field holding the term reference.
 * Override build(), get the context value (e.g. the node), derive the views argument
-  (the taxononomy term) from the context and set it on the view as argument using 
+  (the taxonomy term) from the context and set it on the view as argument using 
   `$view->setArguments()`. Then call the parent build.
  
 A complete code example for the described block can be viewed here: https://gist.github.com/fago/f51fe8861919a40c753a03c79a134848
