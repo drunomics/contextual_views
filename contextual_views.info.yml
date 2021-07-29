@@ -2,4 +2,5 @@ name: Contextual views blocks
 type: module
 description: Provides contextual views blocks.
 core: 8.x
+core_version_requirement: ^8 || ^9
 package: Views
